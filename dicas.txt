@@ -1,0 +1,11 @@
+Olá pessoal, uma dica muito legal para quem quiser iniciar os estudos com SQL.
+
+Existe um site que permite você fazer testes com SQL, 
+é possível fazer testes em diversos bancos de dados, são eles, 
+MySQL 5.6, Oracle 11G R2, PostgresSQL 9.3 e 9.6, SQLite (WebSQL), SQLite(SQL.js) e MS SQL Server 2017.
+
+http://www.sqlfiddle.com/
+
+Acessando o link você se depara com uma página onde você pode escolher qual bando vai fazer os testes,
+basta escolher o banco criar as tabelas, popular os dados e ao lado direito fazer os SQLs de consultas
+desejados. 
