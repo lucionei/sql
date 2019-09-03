@@ -1,0 +1,3 @@
+https://www.savepoint.blog.br/2010/10/26/brincando-com-funcoes-de-janelas-window-functions/
+https://www.devmedia.com.br/trabalhando-com-windows-functions-no-postgresql/33707
+https://dextra.com.br/pt/window-functions-no-postgresql-parte-2/
