@@ -10009,3 +10009,18 @@ INSERT INTO public.CONTAS_RECEBER (ID,DOCUMENTO,PARCELA,EMISSAO,VENCIMENTO,VALOR
 INSERT INTO public.CONTAS_RECEBER (ID,DOCUMENTO,PARCELA,EMISSAO,VENCIMENTO,VALOR) VALUES (9998,22,4,'2019-11-15','2019-08-21',6626.24);
 INSERT INTO public.CONTAS_RECEBER (ID,DOCUMENTO,PARCELA,EMISSAO,VENCIMENTO,VALOR) VALUES (9999,981,2,'2019-07-17','2020-02-18',4888.12);
 INSERT INTO public.CONTAS_RECEBER (ID,DOCUMENTO,PARCELA,EMISSAO,VENCIMENTO,VALOR) VALUES (10000,42,2,'2020-03-04','2018-11-10',4078.43);
+
+SET client_min_messages TO notice;
+begin
+	FOR reg in
+		select id as codigo, parcela, documento,
+			   row_number(*) over (partition by documento order by documento) as parcela_cal
+		from conta_receber
+	  
+	LOOP
+		 update conta_receber
+		 set parcela = parcela_cal
+		 where conta_receber.id = codigo;
+	END LOOP;
+end;
+rollback;

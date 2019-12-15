@@ -1,0 +1,69 @@
+1-Explicar produto cartesiano
+2-Prática:
+
+select count(*)
+from cliente, cidade
+where cliente.cidade = cidade.id
+and cidade.id = 10;
+
+3-Expliar JOIN, junção
+4-fazer prática para cada tipo de JOIN
+5-explicar porque usar JOIN e não produto cartesiano
+6-explicar operadores lógicos e de comparação
+7-prática:
+
+select *
+from cliente join cidade on (cidade.id = cliente.cidade)
+where cidade.descricao = 'CRICIUMA';
+
+select *
+from cliente join cidade on (cidade.id = cliente.cidade)
+where cidade.descricao <> 'IÇARA';
+
+select *
+from cliente join cidade on (cidade.id = cliente.cidade)
+where cidade.descricao in ('ORLEANS','TUBARÃO');
+
+select *
+from cidade
+where (select count(*) from cliente where cliente.cidade = cidade.id) > 1;
+
+select *
+from cidade
+where (select count(*) from cliente where cliente.cidade = cidade.id) = 0;
+
+select cliente.id, cliente.nome
+from cliente join cidade on (cidade.id = cliente.cidade)
+where cliente.id >= 3;
+
+select cidade.descricao
+from cliente join cidade on (cidade.id = cliente.cidade)
+where cliente.id >= 10 and cliente.id < 40;
+
+último
+select cidade.descricao, count(*)
+from cliente join cidade on(cidade.id = cliente.cidade)
+group by cidade.descricao;
+
+11
+select count(*)
+from pedido
+where (select count(*) from conta_receber where conta_receber.documento = pedido.id) > 2;
+
+13
+select pedido.id, pedido.emissao, pedido_item.produto,
+	   sum(pedido_item.quantidade * pedido_item.valor_unitario) over (partition by pedido.id) valor_total_item
+  into temp_pedido
+from pedido join pedido_item on (pedido_item.pedido = pedido.id);
+
+select *
+from temp_pedido
+where valor_total_item > 10000
+order by valor_total_item
+ ou
+
+select pedido.id, pedido.emissao, pedido_item.produto, (pedido_item.valor_unitario * pedido_item.quantidade) valor_total
+from pedido join pedido_item on (pedido_item.pedido = pedido.id)
+where (select sum(pedido_item.valor_unitario * pedido_item.quantidade)
+		 from pedido_item
+		 where pedido_item.pedido = pedido.id) > 10000;

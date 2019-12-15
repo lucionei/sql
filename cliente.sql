@@ -14,3 +14,5 @@ COPY (
     from public.CLIENTE
     order by id
 ) TO 'C:\exemplo.txt' WITH NULL AS 'null';
+
+COPY public.CLIENTE FROM 'c:\exemplo.txt' using delimiters ';';

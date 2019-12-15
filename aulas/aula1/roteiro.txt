@@ -1,0 +1,64 @@
+1-instalar ferramentas
+2-rodar arquivo SQL para montar a base
+3-explicar modelo de dados criado anteriormente, como ficará, pois está sem FKs
+4-explicar ordem de escrita e ordem de execução
+5-Prática:
+select  *
+from cliente
+where cidade = 2;
+
+select min(valor)
+from pedido;
+
+select count(*)
+from pedido
+where cliente = 1;
+
+select sum(valor)
+from pedido;
+
+select *
+from cidade;
+
+select count(*)
+from cliente
+where cidade = 1;
+
+select *
+from status;
+
+select count(*)
+from pedido
+where status = 1;
+
+select sum(valor)
+from pedido
+where status = 3;
+
+select id, descricao, row_number(*) over (order by id)
+from cidade;
+
+Sobrando tempo:
+select id, descricao, grupo, row_number(*) over (order by id)
+from produto;
+
+select id, descricao, grupo, row_number(*) over (order by grupo)
+from produto;
+
+select id, descricao, grupo, count(*) over (order by grupo)
+from produto;
+
+select id, descricao, grupo, count(*) over (partition by grupo)
+from produto;
+
+select distinct grupo, count(*) over (partition by grupo)
+from produto;
+
+select distinct grupo, count(*) over (partition by grupo)
+from produto
+order by grupo;
+
+select *
+from produto
+where estoque = (select max(estoque)
+from produto)
